@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-
+import moment from "moment";
 import { ExpenseListFilters } from "../../components/ExpenseListFilters";
 import { filters, altFilters } from "../fixtures/filters";
 
@@ -54,14 +54,27 @@ test("should sort by date", () => {
   expect(sortByDate).toHaveBeenCalled();
 });
 
-// test('should sort by amount correctly', () => {
+test("should sort by amount", () => {
+  const value = "amount";
+  wrapper.setProps({
+    filters: altFilters
+  });
+  wrapper.find("select").simulate("change", {
+    target: { value }
+  });
+  expect(sortByAmount).toHaveBeenCalled();
+});
 
-// })
+test("should handle date changes", () => {
+  const startDate = moment(0).add(4, "years");
+  const endDate = moment(0).add(8, "years");
+  wrapper.find("DateRangePicker").prop("onDatesChange")({ startDate, endDate });
+  expect(setStartDate).toHaveBeenCalledWith(startDate);
+  expect(setEndDate).toHaveBeenCalledWith(endDate);
+});
 
-// test('should handle date correctly', () => {
-
-// })
-
-// test('should handle date focus correctly', () => {
-
-// })
+test("should handle date focus changes", () => {
+  const calendarFocused = "endDate";
+  wrapper.find("DateRangePicker").prop("onFocusChange")(calendarFocused);
+  expect(wrapper.state("calendarFocused")).toBe(calendarFocused);
+});
