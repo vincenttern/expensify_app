@@ -2,17 +2,18 @@
 
 exports[`shoulder render ExpenseListItem with expenses 1`] = `
 <div>
-  <Link
+  <[object Object]
     to="/edit/1"
   >
     <h3>
       Gum
     </h3>
-  </Link>
+  </[object Object]>
   <p>
-    197
-     - 
-    0
+    $1.97
+     -
+     
+    December 31st, 1969
   </p>
 </div>
 `;
