@@ -67,7 +67,7 @@ module.exports = env => {
           process.env.FIREBASE_STOREAGE_BUCKET
         ),
         "process.env.FIREBASE_MESSAGE_SENDER_ID": JSON.stringify(
-          FIREBASE_MESSAGE_SENDER_ID
+          process.env.FIREBASE_MESSAGE_SENDER_ID
         )
       })
     ],
