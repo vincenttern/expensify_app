@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { startEditExpense, startRemoveExpense } from "../actions/expenses";
 import ExpenseForm from "./ExpenseForm";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 export class EditExpensePage extends React.Component {
   onSubmit = expense => {
@@ -9,6 +11,21 @@ export class EditExpensePage extends React.Component {
     this.props.history.push("/");
   };
 
+  onConfirmRemove = () => {
+    confirmAlert({
+      title: "Confirm to submit",
+      message: "Are you sure to do this.",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => this.onRemove("Click Yes")
+        },
+        {
+          label: "No"
+        }
+      ]
+    });
+  };
   onRemove = () => {
     this.props.startRemoveExpense({ id: this.props.expense.id });
     this.props.history.push("/");
@@ -24,7 +41,10 @@ export class EditExpensePage extends React.Component {
         </div>
         <div className="content-container">
           <ExpenseForm expense={this.props.expense} onSubmit={this.onSubmit} />
-          <button className="button button--secondary" onClick={this.onRemove}>
+          <button
+            className="button button--secondary"
+            onClick={this.onConfirmRemove}
+          >
             Remove Expense
           </button>
         </div>
