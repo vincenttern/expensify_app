@@ -18,3 +18,9 @@
 .button--secondary {
   background: rgba(87, 86, 86, 0.879);
 }
+
+.button-box__logins {
+  display: grid;
+
+  grid-row-gap: $s-size;
+}
